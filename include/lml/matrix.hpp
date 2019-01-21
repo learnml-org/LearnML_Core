@@ -14,6 +14,9 @@ namespace lml
 	{
 	public:
 		matrix() noexcept = default;
+		matrix(std::size_t height, std::size_t width);
+		matrix(const std::vector<double>& array, std::size_t height);
+		matrix(std::vector<double>&& array, std::size_t height);
 		matrix(const matrix& matrix);
 		matrix(matrix&& matrix) noexcept;
 		~matrix() = default;

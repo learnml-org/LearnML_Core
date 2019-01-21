@@ -5,6 +5,15 @@
 
 namespace lml
 {
+	matrix::matrix(std::size_t height, std::size_t width)
+		: data_(height * width), height_(height)
+	{}
+	matrix::matrix(const std::vector<double>& array, std::size_t height)
+		: data_(array), height_(height)
+	{}
+	matrix::matrix(std::vector<double>&& array, std::size_t height)
+		: data_(std::move(array)), height_(height)
+	{}
 	matrix::matrix(const matrix& matrix)
 		: data_(matrix.data_), height_(matrix.height_)
 	{}
