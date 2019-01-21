@@ -173,4 +173,27 @@ namespace lml
 	{
 		return data_.size();
 	}
+
+	matrix matrix::dot(const matrix& other) const
+	{
+		matrix result(height(), other.width());
+
+		for (std::size_t i = 0; i < height(); ++i)
+		{
+			for (std::size_t j = 0; j < other.width(); ++j)
+			{
+				for (std::size_t k = 0; k < width(); ++k)
+				{
+					result[{ i, j }] += (*this)[{ i, k }] * other[{ k, j }];
+				}
+			}
+		}
+
+		return result;
+	}
+
+	matrix dot(const matrix& a, const matrix & b)
+	{
+		return a.dot(b);
+	}
 }
