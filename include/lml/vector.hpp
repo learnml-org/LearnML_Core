@@ -39,6 +39,8 @@ namespace lml
 		friend vector operator*(double c, const vector& vector);
 		friend double operator*(const vector& a, const vector& b) noexcept;
 		friend vector operator-(const vector& vector);
+		vector& operator+=(const vector& other) noexcept;
+		vector& operator-=(const vector& other) noexcept;
 
 	public:
 		void clear() noexcept;

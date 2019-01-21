@@ -83,29 +83,11 @@ namespace lml
 	}
 	vector operator+(const vector& a, const vector& b)
 	{
-		assert(a.dimension() == b.dimension());
-
-		vector result(a);
-		
-		for (std::size_t i = 0; i < a.dimension(); ++i)
-		{
-			result[i] += b[i];
-		}
-
-		return result;
+		return vector(a) += b;
 	}
 	vector operator-(const vector& a, const vector& b)
 	{
-		assert(a.dimension() == b.dimension());
-
-		vector result(a);
-
-		for (std::size_t i = 0; i < a.dimension(); ++i)
-		{
-			result[i] -= b[i];
-		}
-
-		return result;
+		return vector(a) -= b;
 	}
 	vector operator*(double c, const vector& vector)
 	{
@@ -134,6 +116,28 @@ namespace lml
 	vector operator-(const vector& vector)
 	{
 		return -1. * vector;
+	}
+	vector& vector::operator+=(const vector& other) noexcept
+	{
+		assert(dimension() == other.dimension());
+
+		for (std::size_t i = 0; i < dimension(); ++i)
+		{
+			data_[i] += other[i];
+		}
+
+		return *this;
+	}
+	vector& vector::operator-=(const vector& other) noexcept
+	{
+		assert(dimension() == other.dimension());
+
+		for (std::size_t i = 0; i < dimension(); ++i)
+		{
+			data_[i] -= other[i];
+		}
+
+		return *this;
 	}
 
 	void vector::clear() noexcept
