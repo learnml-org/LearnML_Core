@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <ostream>
 #include <vector>
 
 namespace lml
@@ -45,12 +46,16 @@ namespace lml
 		std::size_t width() const noexcept;
 		std::size_t size() const noexcept;
 
+		matrix transpose() const;
 		matrix dot(const matrix& other) const;
 
 	private:
 		std::vector<double> data_;
 		std::size_t height_;
 	};
-	
+
+	std::ostream& operator<<(std::ostream& stream, const matrix& matrix);
+
+	matrix transpose(const matrix& matrix);
 	matrix dot(const matrix& a, const matrix& b);
 }

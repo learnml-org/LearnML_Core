@@ -174,6 +174,20 @@ namespace lml
 		return data_.size();
 	}
 
+	matrix matrix::transpose() const
+	{
+		matrix result(width(), height());
+
+		for (std::size_t i = 0; i < height(); ++i)
+		{
+			for (std::size_t j = 0; j < width(); ++j)
+			{
+				result[{ j, i }] = (*this)[{ i, j }];
+			}
+		}
+
+		return result;
+	}
 	matrix matrix::dot(const matrix& other) const
 	{
 		matrix result(height(), other.width());
@@ -192,6 +206,34 @@ namespace lml
 		return result;
 	}
 
+	std::ostream& operator<<(std::ostream& stream, const matrix& matrix)
+	{
+		stream << '[';
+		
+		for (std::size_t i = 0; i < matrix.height(); ++i)
+		{
+			if (i != 0)
+			{
+				stream << "\n ";
+			}
+			stream << "[ ";
+			
+			for (std::size_t j = 0; j < matrix.width(); ++j)
+			{
+				stream << matrix[{ i, j }] << ' ';
+			}
+
+			stream << ']';
+		}
+
+		stream << ']';
+		return stream;
+	}
+
+	matrix transpose(const matrix& matrix)
+	{
+		return matrix.transpose();
+	}
 	matrix dot(const matrix& a, const matrix & b)
 	{
 		return a.dot(b);
