@@ -1,0 +1,29 @@
+cmake_minimum_required(VERSION 3.8.0)
+project(LearnML_EDK CXX)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(INCLUDE_DIR "../../include")
+set(SOURCE_DIR "./")
+set(OUTPUT_DIR "../../bin")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR})
+
+set(DYNAMIC_LINKING OFF CACHE BOOL "")
+
+include_directories(${INCLUDE_DIR})
+file(GLOB_RECURSE SOURCE_LIST ${SOURCE_DIR}/*.cpp)
+
+add_definitions(-DLML_EDK_INTERNAL)
+
+if(${DYNAMIC_LINKING})
+	add_definitions(-DLML_EDK_DYNAMIC)
+	add_library(${PROJECT_NAME} SHARED ${SOURCE_LIST})
+else()
+	add_library(${PROJECT_NAME} STATIC ${SOURCE_LIST})
+endif()
+
+install(DIRECTORY ${INCLUDE_DIR}/lml_edk DESTINATION include)
+install(TARGETS ${PROJECT_NAME} DESTINATION lib)
