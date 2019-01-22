@@ -1,9 +1,15 @@
 #pragma once
 
 #include <cstdint>
+#include <iomanip>
+#include <ios>
 #include <type_traits>
+#include <sstream>
+#include <string>
+#include <string_view>
 #include <utility>
 #include <variant>
+#include <Windows.h>
 
 namespace lml
 {
@@ -119,4 +125,6 @@ namespace lml
 	private:
 		data_type_ data_;
 	};
+
+	std::basic_string<TCHAR> make_error_message(const std::basic_string_view<TCHAR>& message, std::uint32_t errorcode);
 }

@@ -1,12 +1,19 @@
+#include <lml/application.hpp>
+
+#include <iomanip>
+#include <ios>
+#include <sstream>
 #include <Windows.h>
 
-#include <lml/matrix.hpp>
+#include <lml/result.hpp>
 
 int APIENTRY WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int show)
 {
-	lml::matrix a({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 3);
-	lml::matrix b({ 1, 2, 3, 4, 5, 6 }, 3);
-	lml::matrix c = lml::dot(a, b);
+	if (int errorcode = lml::application::initialize(instance, show); errorcode)
+	{
+		lml::application::messagebox(nullptr, lml::make_error_message(TEXT("Failed to initialize."), errorcode), MB_OK | MB_ICONERROR);
+		return 0;
+	}
 
 	return 0;
 }
