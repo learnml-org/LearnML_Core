@@ -2,6 +2,7 @@
 #include <lml_edk/config.hpp>
 
 #include <array>
+#include <exception>
 #include <optional>
 
 namespace lml_edk
@@ -18,5 +19,11 @@ namespace lml_edk
 		
 	public:
 		std::array<int, 3> edk_version() const noexcept;
+	};
+
+	class LML_EDK_EXPORT deleted_function_call : public std::exception
+	{
+	public:
+		using std::exception::exception;
 	};
 }

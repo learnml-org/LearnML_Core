@@ -1,11 +1,10 @@
 #include <lml/application.hpp>
+#include <lml/result.hpp>
 
 #include <iomanip>
 #include <ios>
 #include <sstream>
 #include <Windows.h>
-
-#include <lml/result.hpp>
 
 int APIENTRY WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int show)
 {
