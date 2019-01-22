@@ -4,8 +4,8 @@
 #	ifdef LML_EDK_INTERNAL
 #		define LML_EDK_EXPORT __declspec(dllexport)
 #	else
-#		define LML_EDK_IMPORT __declspec(dllimport)
+#		define LML_EDK_EXPORT __declspec(dllimport)
 #	endif
 #else
-#	define LML_EDK_IMPORT
+#	define LML_EDK_EXPORT
 #endif
