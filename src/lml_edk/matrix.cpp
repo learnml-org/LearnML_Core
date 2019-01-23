@@ -1,9 +1,9 @@
-#include <lml/matrix.hpp>
+#include <lml_edk/matrix.hpp>
 
 #include <cassert>
 #include <utility>
 
-namespace lml
+namespace lml_edk
 {
 	matrix::matrix(std::size_t height, std::size_t width)
 		: data_(height * width), height_(height)
@@ -88,7 +88,7 @@ namespace lml
 	}
 	matrix operator*(double c, const matrix& matrix)
 	{
-		lml::matrix result(matrix);
+		lml_edk::matrix result(matrix);
 
 		for (std::size_t i = 0; i < matrix.size(); ++i)
 		{

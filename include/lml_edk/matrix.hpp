@@ -1,17 +1,18 @@
 #pragma once
+#include <lml_edk/config.hpp>
 
 #include <cstddef>
 #include <ostream>
 #include <vector>
 
-namespace lml
+namespace lml_edk
 {
-	struct matrix_index final
+	struct LML_EDK_EXPORT matrix_index final
 	{
 		std::size_t y, x;
 	};
 
-	class matrix final
+	class LML_EDK_EXPORT matrix final
 	{
 	public:
 		matrix() noexcept = default;

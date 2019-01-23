@@ -1,17 +1,11 @@
 #pragma once
 
 #include <cstdint>
-#include <iomanip>
-#include <ios>
 #include <type_traits>
-#include <sstream>
-#include <string>
-#include <string_view>
 #include <utility>
 #include <variant>
-#include <Windows.h>
 
-namespace lml
+namespace lml_edk
 {
 	template<typename Ty_>
 	class ok final
@@ -74,16 +68,16 @@ namespace lml
 		using data_type_ = std::variant<ok<Ok_>, error<Error_>>;
 
 	public:
-		result(const ok<Ok_>& ok) noexcept(std::is_nothrow_constructible_v<data_type_, const lml::ok<Ok_>&>)
+		result(const ok<Ok_>& ok) noexcept(std::is_nothrow_constructible_v<data_type_, const lml_edk::ok<Ok_>&>)
 			: data_(ok)
 		{}
-		result(ok<Ok_>&& ok) noexcept(std::is_nothrow_constructible_v<data_type_, lml::ok<Ok_>&&>)
+		result(ok<Ok_>&& ok) noexcept(std::is_nothrow_constructible_v<data_type_, lml_edk::ok<Ok_>&&>)
 			: data_(std::move(ok))
 		{}
-		result(const error<Error_>& error) noexcept(std::is_nothrow_constructible_v<data_type_, const lml::error<Error_>&>)
+		result(const error<Error_>& error) noexcept(std::is_nothrow_constructible_v<data_type_, const lml_edk::error<Error_>&>)
 			: data_(error)
 		{}
-		result(error<Error_>&& error) noexcept(std::is_nothrow_constructible_v<data_type_, lml::error<Error_>&&>)
+		result(error<Error_>&& error) noexcept(std::is_nothrow_constructible_v<data_type_, lml_edk::error<Error_>&&>)
 			: data_(std::move(error))
 		{}
 		result(const result& result) noexcept(std::is_nothrow_copy_constructible_v<data_type_>)
@@ -125,6 +119,4 @@ namespace lml
 	private:
 		data_type_ data_;
 	};
-
-	std::basic_string<TCHAR> make_error_message(const std::basic_string_view<TCHAR>& message, std::uint32_t errorcode);
 }
