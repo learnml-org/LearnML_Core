@@ -1,5 +1,4 @@
 #include <lml/application.hpp>
-#include <lml_edk/result.hpp>
 
 #include <iomanip>
 #include <ios>
