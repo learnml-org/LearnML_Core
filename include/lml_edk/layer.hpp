@@ -70,7 +70,7 @@ namespace lml_edk
 		{
 		public:
 			layer(const layer&) = delete;
-			virtual ~layer() = default;
+			virtual ~layer() override = default;
 
 		protected:
 			layer() noexcept = default;
