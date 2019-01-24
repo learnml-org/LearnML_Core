@@ -55,8 +55,8 @@ namespace lml_edk
 		std::size_t height_;
 	};
 
-	std::ostream& operator<<(std::ostream& stream, const matrix& matrix);
+	LML_EDK_EXPORT std::ostream& operator<<(std::ostream& stream, const matrix& matrix);
 
-	matrix transpose(const matrix& matrix);
-	matrix dot(const matrix& a, const matrix& b);
+	LML_EDK_EXPORT matrix transpose(const matrix& matrix);
+	LML_EDK_EXPORT matrix dot(const matrix& a, const matrix& b);
 }

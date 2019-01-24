@@ -22,4 +22,8 @@ namespace lml_edk
 	{
 		return reinterpret_cast<function_result(Base_::*)(function_parameter)>(function);
 	}
+
+	struct no_return_t
+	{};
+	static inline const no_return_t no_return;
 }
