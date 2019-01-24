@@ -25,7 +25,7 @@ namespace lml_edk
 	public:
 		virtual global_string name() const = 0;
 		virtual std::basic_string<TCHAR> developer() const = 0;
-		virtual std::basic_string<CHAR> display_version() const = 0;
+		virtual std::basic_string<TCHAR> display_version() const = 0;
 		virtual std::uint64_t version() const noexcept = 0;
 		virtual const function_table<extension_base>& functions() const = 0;
 	};

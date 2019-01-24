@@ -35,7 +35,7 @@ namespace lml_edk
 
 	public:
 		virtual std::shared_ptr<layer_base> allocate(function_parameter arg) const = 0;
-		virtual std::vector<std::tuple<std::basic_string<TCHAR>, type, global_string, bool>> constructor_parameters() const = 0;
+		virtual const std::vector<std::tuple<std::basic_string<TCHAR>, type, global_string, bool>>& constructor_parameters() const = 0;
 
 		virtual std::uint32_t id() const;
 		virtual global_string name() const;
@@ -83,11 +83,11 @@ namespace lml_edk
 
 			// Parameter:
 			// - x: matrix
-			// Result: no_return_t
+			// Result: matrix
 			virtual function_result forward(function_parameter arg) = 0;
 			// Parameter:
 			// - g: matrix
-			// Result: no_return_t
+			// Result: matrix
 			virtual function_result backward(function_parameter arg) = 0;
 			// Parameter:
 			// - lr: double

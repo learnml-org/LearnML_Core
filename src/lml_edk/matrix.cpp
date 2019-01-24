@@ -174,6 +174,55 @@ namespace lml_edk
 		return data_.size();
 	}
 
+	matrix::iterator matrix::begin() noexcept
+	{
+		return data_.begin();
+	}
+	matrix::const_iterator matrix::begin() const noexcept
+	{
+		return data_.begin();
+	}
+	matrix::const_iterator matrix::cbegin() const noexcept
+	{
+		return data_.cbegin();
+	}
+	matrix::iterator matrix::end() noexcept
+	{
+		return data_.end();
+	}
+	matrix::const_iterator matrix::end() const noexcept
+	{
+		return data_.end();
+	}
+	matrix::const_iterator matrix::cend() const noexcept
+	{
+		return data_.cend();
+	}
+	matrix::reverse_iterator matrix::rbegin() noexcept
+	{
+		return data_.rbegin();
+	}
+	matrix::const_reverse_iterator matrix::rbegin() const noexcept
+	{
+		return data_.rbegin();
+	}
+	matrix::const_reverse_iterator matrix::crbegin() const noexcept
+	{
+		return data_.crbegin();
+	}
+	matrix::reverse_iterator matrix::rend() noexcept
+	{
+		return data_.rend();
+	}
+	matrix::const_reverse_iterator matrix::rend() const noexcept
+	{
+		return data_.rend();
+	}
+	matrix::const_reverse_iterator matrix::crend() const noexcept
+	{
+		return data_.crend();
+	}
+
 	matrix matrix::transpose() const
 	{
 		matrix result(width(), height());

@@ -7,12 +7,11 @@
 #include <map>
 #include <string>
 #include <utility>
-#include <vector>
 
 namespace lml_edk
 {
 	using function_result = std::any;
-	using function_parameter = const std::vector<std::any>&;
+	using function_parameter = std::map<std::string, std::any>;
 
 	template<typename Base_>
 	using function_table = std::map<std::string, std::pair<std::function<function_result(Base_*, function_parameter)>, std::uint64_t>>;

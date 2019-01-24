@@ -15,6 +15,12 @@ namespace lml_edk
 	class LML_EDK_EXPORT matrix final
 	{
 	public:
+		using iterator = std::vector<double>::iterator;
+		using const_iterator = std::vector<double>::const_iterator;
+		using reverse_iterator = std::vector<double>::reverse_iterator;
+		using const_reverse_iterator = std::vector<double>::const_reverse_iterator;
+
+	public:
 		matrix() noexcept = default;
 		matrix(std::size_t height, std::size_t width);
 		matrix(const std::vector<double>& array, std::size_t height);
@@ -46,6 +52,19 @@ namespace lml_edk
 		std::size_t height() const noexcept;
 		std::size_t width() const noexcept;
 		std::size_t size() const noexcept;
+
+		iterator begin() noexcept;
+		const_iterator begin() const noexcept;
+		const_iterator cbegin() const noexcept;
+		iterator end() noexcept;
+		const_iterator end() const noexcept;
+		const_iterator cend() const noexcept;
+		reverse_iterator rbegin() noexcept;
+		const_reverse_iterator rbegin() const noexcept;
+		const_reverse_iterator crbegin() const noexcept;
+		reverse_iterator rend() noexcept;
+		const_reverse_iterator rend() const noexcept;
+		const_reverse_iterator crend() const noexcept;
 
 		matrix transpose() const;
 		matrix dot(const matrix& other) const;
