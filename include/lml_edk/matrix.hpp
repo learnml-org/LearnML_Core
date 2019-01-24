@@ -1,5 +1,4 @@
 #pragma once
-#include <lml_edk/config.hpp>
 
 #include <cstddef>
 #include <ostream>
@@ -7,12 +6,12 @@
 
 namespace lml_edk
 {
-	struct LML_EDK_EXPORT matrix_index final
+	struct matrix_index final
 	{
 		std::size_t y, x;
 	};
 
-	class LML_EDK_EXPORT matrix final
+	class matrix final
 	{
 	public:
 		using iterator = std::vector<double>::iterator;
@@ -74,8 +73,8 @@ namespace lml_edk
 		std::size_t height_;
 	};
 
-	LML_EDK_EXPORT std::ostream& operator<<(std::ostream& stream, const matrix& matrix);
+	std::ostream& operator<<(std::ostream& stream, const matrix& matrix);
 
-	LML_EDK_EXPORT matrix transpose(const matrix& matrix);
-	LML_EDK_EXPORT matrix dot(const matrix& a, const matrix& b);
+	matrix transpose(const matrix& matrix);
+	matrix dot(const matrix& a, const matrix& b);
 }

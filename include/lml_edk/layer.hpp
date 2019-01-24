@@ -1,7 +1,6 @@
 #pragma once
-#include <lml_edk/config.hpp>
 
-#include <lml_edk/function_table.hpp>
+#include <lml_edk/function.hpp>
 #include <lml_edk/language.hpp>
 #include <lml_edk/matrix.hpp>
 #include <lml_edk/type.hpp>
@@ -21,7 +20,7 @@ namespace lml_edk
 {
 	class layer_base;
 
-	class LML_EDK_EXPORT layer_allocator
+	class layer_allocator
 	{
 	public:
 		layer_allocator(const layer_allocator&) = delete;
@@ -44,7 +43,7 @@ namespace lml_edk
 
 	using layer_allocator_ptr = std::shared_ptr<const layer_allocator>;
 
-	class LML_EDK_EXPORT layer_base
+	class layer_base
 	{
 	public:
 		layer_base(const layer_base&) = delete;
@@ -60,13 +59,13 @@ namespace lml_edk
 		virtual std::uint32_t id() const noexcept = 0;
 		virtual global_string name() const = 0;
 		virtual global_pair_string description() const = 0;
-		virtual const function_table<layer_base>& functions() const = 0;
+		virtual const function_table& functions() const = 0;
 		virtual layer_allocator_ptr allocator() const = 0;
 	};
 
 	inline namespace v1_0_0
 	{
-		class LML_EDK_EXPORT layer : public layer_base
+		class layer : public layer_base
 		{
 		public:
 			layer(const layer&) = delete;
@@ -79,7 +78,7 @@ namespace lml_edk
 			layer& operator=(const layer&) = delete;
 
 		public:
-			virtual const function_table<layer_base>& functions() const override final;
+			virtual const function_table& functions() const override final;
 
 			// Parameter:
 			// - x: matrix

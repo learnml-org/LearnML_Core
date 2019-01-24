@@ -1,7 +1,6 @@
 #pragma once
-#include <lml_edk/config.hpp>
 
-#include <lml_edk/function_table.hpp>
+#include <lml_edk/function.hpp>
 #include <lml_edk/language.hpp>
 
 #include <cstdint>
@@ -10,7 +9,7 @@
 
 namespace lml_edk
 {
-	class LML_EDK_EXPORT extension_base
+	class extension_base
 	{
 	public:
 		extension_base(const extension_base&) = delete;
@@ -27,14 +26,14 @@ namespace lml_edk
 		virtual std::basic_string<TCHAR> developer() const = 0;
 		virtual std::basic_string<TCHAR> display_version() const = 0;
 		virtual std::uint64_t version() const noexcept = 0;
-		virtual const function_table<extension_base>& functions() const = 0;
+		virtual const function_table& functions() const = 0;
 	};
 
 	using extension_base_ptr = std::shared_ptr<extension_base>;
 
 	inline namespace v1_0_0
 	{
-		class LML_EDK_EXPORT extension : public extension_base
+		class extension : public extension_base
 		{
 		public:
 			extension(const extension&) = delete;
@@ -47,7 +46,7 @@ namespace lml_edk
 			extension& operator=(const extension&) = delete;
 
 		public:
-			virtual const function_table<extension_base>& functions() const override final;
+			virtual const function_table& functions() const override final;
 
 			// Parameter:
 			// - version: std::uint64_t

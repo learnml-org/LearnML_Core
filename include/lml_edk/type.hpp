@@ -1,5 +1,4 @@
 #pragma once
-#include <lml_edk/config.hpp>
 
 namespace lml_edk
 {

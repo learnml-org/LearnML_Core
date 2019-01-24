@@ -21,6 +21,7 @@ namespace lml
 		static constexpr LPCTSTR name = TEXT("LearnML");
 		static constexpr LPCTSTR title = TEXT("LearnML 1.0.0");
 		static constexpr int version[] = { 1, 0, 0 };
+		static constexpr std::uint64_t version_int = 0;
 
 		static inline HINSTANCE instance = nullptr;
 		static inline int show = 0;
