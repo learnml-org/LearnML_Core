@@ -11,7 +11,6 @@ namespace lml
 	std::uint64_t extension_engine::add_extension(const std::basic_string<TCHAR>& path)
 	{
 		HMODULE library = LoadLibrary(path.c_str());
-		auto a = GetLastError();
 		lml_edk::extension_base_ptr extension;
 		if (!library) throw std::runtime_error("Failed to load extension.");
 		std::shared_ptr<void> library_raii(library, [&extension](void* module)
@@ -39,5 +38,16 @@ namespace lml
 		enabled(extension.get(), { { "version", application::version_int }  });
 
 		return last_id - 1;
+	}
+	lml_edk::extension_base_ptr extension_engine::get_extension(std::uint64_t id) const noexcept
+	{
+		return extensions_.at(id).first;
+	}
+	std::uint64_t extension_engine::get_id(const lml_edk::extension_base_ptr& extension) const noexcept
+	{
+		return std::find_if(extensions_.begin(), extensions_.end(), [&extension](auto pair)
+		{
+			return pair.second.first == extension;
+		})->first;
 	}
 }
