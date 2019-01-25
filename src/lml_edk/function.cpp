@@ -29,7 +29,7 @@ namespace lml_edk
 		function.data_ = nullptr;
 		return *this;
 	}
-	function_result function::operator()(void* instance, const function_parameter& arg)
+	function_result function::operator()(void* instance, const function_parameter& arg) const
 	{
 		if (!data_) throw std::bad_function_call();
 		else return data_->call(instance, arg);

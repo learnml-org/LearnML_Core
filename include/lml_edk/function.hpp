@@ -27,7 +27,7 @@ namespace lml_edk
 
 		public:
 			virtual function_data* copy() const = 0;
-			virtual function_result call(void* instance, const function_parameter& arg) = 0;
+			virtual function_result call(void* instance, const function_parameter& arg) const = 0;
 		};
 
 		template<typename Base_>
@@ -48,7 +48,7 @@ namespace lml_edk
 			{
 				return new function_tdata(function_);
 			}
-			virtual function_result call(void* instance, const function_parameter& arg) override
+			virtual function_result call(void* instance, const function_parameter& arg) const override
 			{
 				return (reinterpret_cast<Base_*>(instance)->*function_)(arg);
 			}
@@ -73,7 +73,7 @@ namespace lml_edk
 	public:
 		function& operator=(const function& function);
 		function& operator=(function&& function) noexcept;
-		function_result operator()(void* instance, const function_parameter& arg);
+		function_result operator()(void* instance, const function_parameter& arg) const;
 
 	private:
 		details::function_data* data_ = nullptr;
