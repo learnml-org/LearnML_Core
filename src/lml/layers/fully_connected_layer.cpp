@@ -10,7 +10,7 @@ namespace lml::layers
 	{
 		std::random_device seed;
 		std::mt19937_64 rd(seed());
-		std::uniform_real_distribution<double> dist(-1, 1);
+		std::uniform_real_distribution<double> dist(0, 1);
 
 		auto rand = [&rd, &dist](double) mutable
 		{
@@ -62,7 +62,7 @@ namespace lml::layers
 	}
 	void fully_connected_layer::update(double lr)
 	{
-		dweights_ -= lr * dweights_;
-		dbias_ -= lr * dbias_;
+		weights_ -= lr * dweights_;
+		bias_ -= lr * dbias_;
 	}
 }

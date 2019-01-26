@@ -242,6 +242,8 @@ namespace lml_edk
 	}
 	matrix matrix::dot(const matrix& other) const
 	{
+		assert(width() == other.height());
+
 		matrix result(height(), other.width());
 
 		for (std::size_t i = 0; i < height(); ++i)

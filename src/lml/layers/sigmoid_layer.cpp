@@ -23,7 +23,7 @@ namespace lml::layers
 				{ TEXT(""), TEXT("Sigmoid의 활성값을 계산합니다.") }
 			} },
 			{ lml_edk::language::en, {
-				{ TEXT(""), TEXT("Calculate the active value of Sigmoid function.") }
+				{ TEXT(""), TEXT("Calculate the value of Sigmoid function.") }
 			} }
 		};
 	}
