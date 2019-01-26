@@ -22,6 +22,7 @@ namespace lml_edk
 	public:
 		matrix() noexcept = default;
 		matrix(std::size_t height, std::size_t width);
+		matrix(std::size_t height, std::size_t width, double value);
 		matrix(const std::vector<double>& array, std::size_t height);
 		matrix(std::vector<double>&& array, std::size_t height);
 		matrix(const matrix& matrix);
