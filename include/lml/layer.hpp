@@ -53,4 +53,26 @@ namespace lml
 	private:
 		lml_edk::layer_base_ptr layer_;
 	};
+
+	class layer_extension final : public layer
+	{
+	public:
+		explicit layer_extension(const lml_edk::layer_base_ptr& extension) noexcept;
+		layer_extension(const layer_extension&) = delete;
+		virtual ~layer_extension() override = default;
+
+	public:
+		layer_extension& operator=(const layer_extension&) = delete;
+
+	public:
+		virtual std::uint32_t id() const noexcept override;
+		virtual lml_edk::global_string name() const override;
+		virtual lml_edk::global_pair_string description() const override;
+		virtual lml_edk::matrix forward(const lml_edk::matrix& x) override;
+		virtual lml_edk::matrix backward(const lml_edk::matrix& g) override;
+		virtual void update(double lr) override;
+
+	private:
+		wrap_layer extension_;
+	};
 }

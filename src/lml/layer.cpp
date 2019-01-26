@@ -32,3 +32,35 @@ namespace lml
 		layer_->functions().at("update").first(layer_.get(), { { "lr", lr } });
 	}
 }
+
+namespace lml
+{
+	layer_extension::layer_extension(const lml_edk::layer_base_ptr& extension) noexcept
+		: extension_(extension)
+	{}
+
+	std::uint32_t layer_extension::id() const noexcept
+	{
+		return extension_.id();
+	}
+	lml_edk::global_string layer_extension::name() const
+	{
+		return extension_.name();
+	}
+	lml_edk::global_pair_string layer_extension::description() const
+	{
+		return extension_.description();
+	}
+	lml_edk::matrix layer_extension::forward(const lml_edk::matrix& x)
+	{
+		return extension_.forward(x);
+	}
+	lml_edk::matrix layer_extension::backward(const lml_edk::matrix& g)
+	{
+		return extension_.backward(g);
+	}
+	void layer_extension::update(double lr)
+	{
+		extension_.update(lr);
+	}
+}
