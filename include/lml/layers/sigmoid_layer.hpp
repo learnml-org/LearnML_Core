@@ -8,15 +8,15 @@
 
 namespace lml::layers
 {
-	class fully_connected_layer final : public layer
+	class sigmoid_layer final : public layer
 	{
 	public:
-		explicit fully_connected_layer(std::uint64_t input, std::uint64_t output) noexcept;
-		fully_connected_layer(const fully_connected_layer&) = delete;
-		virtual ~fully_connected_layer() override = default;
+		sigmoid_layer() noexcept = default;
+		sigmoid_layer(const sigmoid_layer&) = delete;
+		virtual ~sigmoid_layer() override = default;
 
 	public:
-		fully_connected_layer& operator=(const fully_connected_layer&) = delete;
+		sigmoid_layer& operator=(const sigmoid_layer&) = delete;
 
 	public:
 		virtual std::uint32_t id() const noexcept override;
@@ -27,8 +27,6 @@ namespace lml::layers
 		virtual void update(double lr) override;
 
 	private:
-		lml_edk::matrix weights_, bias_;
-		lml_edk::matrix dweights_, dbias_;
 		lml_edk::matrix x_, y_;
 	};
 }
