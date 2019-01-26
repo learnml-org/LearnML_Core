@@ -14,7 +14,7 @@ namespace lml
 	{
 		return layer_->name();
 	}
-	lml_edk::global_pair_string wrap_layer::description() const
+	lml_edk::global_description wrap_layer::description() const
 	{
 		return layer_->description();
 	}
@@ -47,7 +47,7 @@ namespace lml
 	{
 		return extension_.name();
 	}
-	lml_edk::global_pair_string layer_extension::description() const
+	lml_edk::global_description layer_extension::description() const
 	{
 		return extension_.description();
 	}

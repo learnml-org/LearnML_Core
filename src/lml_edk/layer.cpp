@@ -10,7 +10,7 @@ namespace lml_edk
 	{
 		return allocate({})->name();
 	}
-	global_pair_string layer_allocator::description() const
+	global_description layer_allocator::description() const
 	{
 		return allocate({})->description();
 	}

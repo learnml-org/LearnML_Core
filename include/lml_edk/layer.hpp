@@ -38,7 +38,7 @@ namespace lml_edk
 
 		virtual std::uint32_t id() const;
 		virtual global_string name() const;
-		virtual global_pair_string description() const;
+		virtual global_description description() const;
 	};
 
 	using layer_allocator_ptr = std::shared_ptr<const layer_allocator>;
@@ -58,7 +58,7 @@ namespace lml_edk
 	public:
 		virtual std::uint32_t id() const noexcept = 0;
 		virtual global_string name() const = 0;
-		virtual global_pair_string description() const = 0;
+		virtual global_description description() const = 0;
 		virtual const function_table& functions() const = 0;
 		virtual layer_allocator_ptr allocator() const = 0;
 	};

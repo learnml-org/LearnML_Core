@@ -21,7 +21,7 @@ namespace lml
 	public:
 		virtual std::uint32_t id() const noexcept = 0;
 		virtual lml_edk::global_string name() const = 0;
-		virtual lml_edk::global_pair_string description() const = 0;
+		virtual lml_edk::global_description description() const = 0;
 		virtual lml_edk::matrix forward(const lml_edk::matrix& x) = 0;
 		virtual lml_edk::matrix backward(const lml_edk::matrix& g) = 0;
 		virtual void update(double lr) = 0;
@@ -44,7 +44,7 @@ namespace lml
 	public:
 		std::uint32_t id() const noexcept;
 		lml_edk::global_string name() const;
-		lml_edk::global_pair_string description() const;
+		lml_edk::global_description description() const;
 
 		lml_edk::matrix forward(const lml_edk::matrix& x);
 		lml_edk::matrix backward(const lml_edk::matrix& g);
@@ -67,7 +67,7 @@ namespace lml
 	public:
 		virtual std::uint32_t id() const noexcept override;
 		virtual lml_edk::global_string name() const override;
-		virtual lml_edk::global_pair_string description() const override;
+		virtual lml_edk::global_description description() const override;
 		virtual lml_edk::matrix forward(const lml_edk::matrix& x) override;
 		virtual lml_edk::matrix backward(const lml_edk::matrix& g) override;
 		virtual void update(double lr) override;
