@@ -1,5 +1,7 @@
 #include <lml/layers/fully_connected_layer.hpp>
 
+#include <lml/details/string.hpp>
+
 #include <algorithm>
 #include <random>
 
@@ -33,18 +35,18 @@ namespace lml::layers
 	lml_edk::global_string fully_connected_layer::name() const
 	{
 		return {
-			{ lml_edk::language::ko, TEXT("전결합층") },
-			{ lml_edk::language::en, TEXT("Fully connected layer") }
+			{ lml_edk::language::ko, LML_STRING_LAYERS_FULLY_CONNECTED_LAYER_METHOD_NAME_KOR },
+			{ lml_edk::language::en, LML_STRING_LAYERS_FULLY_CONNECTED_LAYER_METHOD_NAME_ENG }
 		};
 	}
 	lml_edk::global_description fully_connected_layer::description() const
 	{
 		return {
 			{ lml_edk::language::ko, {
-				{ TEXT(""), TEXT("이전 층과 현재 층이 완전히 결합된 층으로, 가장 일반적인 형태의 층입니다.") }
+				{ TEXT(""), LML_STRING_LAYERS_FULLY_CONNECTED_LAYER_METHOD_DESCRIPTION_KOR }
 			} },
 			{ lml_edk::language::en, {
-				{ TEXT(""), TEXT("The layer which is fully connected with the previous layer. This is the most commonly used layer.") }
+				{ TEXT(""), LML_STRING_LAYERS_FULLY_CONNECTED_LAYER_METHOD_DESCRIPTION_ENG }
 			} }
 		};
 	}
