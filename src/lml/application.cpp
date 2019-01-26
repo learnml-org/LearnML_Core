@@ -22,7 +22,7 @@ namespace lml
 		wndclass.hCursor = LoadCursor(nullptr, IDC_ARROW);
 		wndclass.hIcon = LoadIcon(nullptr, IDI_APPLICATION);
 		wndclass.hInstance = instance;
-		wndclass.lpfnWndProc = form::static_wnd_proc_;
+		wndclass.lpfnWndProc = form::wnd_proc_;
 		wndclass.lpszClassName = TEXT("form");
 		wndclass.lpszMenuName = nullptr;
 		wndclass.style = CS_HREDRAW | CS_VREDRAW;

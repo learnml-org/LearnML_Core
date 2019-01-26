@@ -23,15 +23,20 @@ namespace lml
 		void show();
 		void show(int show);
 
+	protected:
+		virtual LRESULT CALLBACK wnd_proc(UINT message, WPARAM wparam, LPARAM lparam);
+
 	private:
 		void initialize_form_();
-		LRESULT CALLBACK wnd_proc_(HWND handle, UINT message, WPARAM wparam, LPARAM lparam);
+
+	public:
+		HWND handle() noexcept;
 
 	private:
 		HWND handle_;
 
 	private:
-		static LRESULT CALLBACK static_wnd_proc_(HWND handle, UINT message, WPARAM wparam, LPARAM lparam);
+		static LRESULT CALLBACK wnd_proc_(HWND handle, UINT message, WPARAM wparam, LPARAM lparam);
 	};
 
 	using form_ptr = std::shared_ptr<form>;
@@ -45,5 +50,8 @@ namespace lml
 
 	public:
 		main_form& operator=(const main_form&) = delete;
+
+	protected:
+		virtual LRESULT CALLBACK wnd_proc(UINT message, WPARAM wparam, LPARAM lparam) override;
 	};
 }

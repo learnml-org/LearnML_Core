@@ -25,6 +25,15 @@ namespace lml
 		ShowWindow(handle_, show);
 	}
 
+	LRESULT form::wnd_proc(UINT message, WPARAM wparam, LPARAM lparam)
+	{
+		switch (message)
+		{
+		default:
+			return DefWindowProc(handle_, message, wparam, lparam);
+		}
+	}
+
 	void form::initialize_form_()
 	{
 		if ((handle_ = CreateWindow(TEXT("form"), application::title, WS_OVERLAPPEDWINDOW,
@@ -34,26 +43,39 @@ namespace lml
 		SetLastError(0);
 		if (SetWindowLongPtr(handle_, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this)) == 0 && GetLastError() != 0) throw LML_ERRORCODE_FAILED_TO_CREATE_FORM;
 	}
-	LRESULT form::wnd_proc_(HWND handle, UINT message, WPARAM wparam, LPARAM lparam)
+
+	HWND form::handle() noexcept
 	{
-		switch (message)
-		{
-		default:
-			return DefWindowProc(handle, message, wparam, lparam);
-		}
+		return handle_;
 	}
 
-	LRESULT form::static_wnd_proc_(HWND handle, UINT message, WPARAM wparam, LPARAM lparam)
+	LRESULT form::wnd_proc_(HWND handle, UINT message, WPARAM wparam, LPARAM lparam)
 	{
 		form* address = reinterpret_cast<form*>(GetWindowLongPtr(handle, GWLP_USERDATA));
 		
 		if (address)
 		{
-			return address->wnd_proc_(handle, message, wparam, lparam);
+			return address->wnd_proc(message, wparam, lparam);
 		}
 		else
 		{
 			return DefWindowProc(handle, message, wparam, lparam);
+		}
+	}
+}
+
+namespace lml
+{
+	LRESULT main_form::wnd_proc(UINT message, WPARAM wparam, LPARAM lparam)
+	{
+		switch (message)
+		{
+		case WM_DESTROY:
+			PostQuitMessage(0);
+			break;
+
+		default:
+			return form::wnd_proc(message, wparam, lparam);
 		}
 	}
 }
