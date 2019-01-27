@@ -1,6 +1,7 @@
 #include <lml/log.hpp>
 
 #include <lml/application.hpp>
+#include <lml/platform.hpp>
 #include <lml/details/errorcode.hpp>
 
 #include <lml/string.hpp>
@@ -8,6 +9,7 @@
 #include <fstream>
 #include <thread>
 #include <utility>
+#include <VersionHelpers.h>
 
 namespace lml
 {
@@ -39,6 +41,14 @@ namespace lml
 
 namespace lml
 {
+	logger::~logger()
+	{
+		if (!autosave_.empty())
+		{
+			save(autosave_, autosave_include_additional_data_);
+		}
+	}
+
 	void logger::add_log(log_ptr&& log)
 	{
 		logs_.push_back(std::move(log));
@@ -65,15 +75,21 @@ namespace lml
 		static constexpr std::uint32_t version = 0;
 		static constexpr std::uint32_t bom = 0x12345678;
 
-		static constexpr char zero_padding_0[47]{ 0, };
-
 		// Header (64 Bytes)
 		stream.write(magic_number, sizeof(magic_number));															// Magic Number				(4 Bytes)
 		stream.write(reinterpret_cast<const char*>(&version), sizeof(version));										// Log System Veresion		(4 Bytes)
 		stream.write(reinterpret_cast<const char*>(&bom), sizeof(bom));												// Byte Order Mark			(4 Bytes)
 		stream.write(reinterpret_cast<const char*>(&include_additional_data), sizeof(include_additional_data));		//							(1 Bytes)
-		stream.write(reinterpret_cast<const char*>(&application::version_int), sizeof(application::version_int));	// Application Version		(4 Byets)
-		stream.write(zero_padding_0, sizeof(zero_padding_0));														// Padding					(47 Bytes)
+		stream.write(reinterpret_cast<const char*>(&application::version_int), sizeof(application::version_int));	// Application Version		(8 Bytes)
+		
+		std::uint8_t buffer_u8 = static_cast<std::uint8_t>(architecture::target);
+		stream.write(reinterpret_cast<const char*>(&buffer_u8), sizeof(buffer_u8));									// Platform Architecture	(1 Bytes)
+		buffer_u8 = static_cast<std::uint8_t>(os::target);
+		stream.write(reinterpret_cast<const char*>(&buffer_u8), sizeof(buffer_u8));									// Platform OS				(1 Bytes)
+		const std::string os_name = get_os_name();
+		const std::uint64_t os_name_size = static_cast<std::uint64_t>(os_name.size());
+		stream.write(reinterpret_cast<const char*>(&os_name_size), sizeof(os_name_size));							// Platform OS Name Size	(8 Bytes)
+		stream.write(os_name.c_str(), static_cast<std::streamsize>(os_name_size));									// Platform OS Name
 
 		// Logs
 		const std::uint64_t count_of_logs(logs_.size());
@@ -83,5 +99,22 @@ namespace lml
 		{
 			l->save(stream, include_additional_data);
 		}
+	}
+
+	std::basic_string<TCHAR> logger::autosave() const
+	{
+		return autosave_;
+	}
+	void logger::autosave(const std::basic_string<TCHAR>& new_autosave)
+	{
+		autosave_ = new_autosave;
+	}
+	bool logger::autosave_include_additional_data() const noexcept
+	{
+		return autosave_include_additional_data_;
+	}
+	void logger::autosave_include_additional_data(bool new_autosave_include_additional_data) noexcept
+	{
+		autosave_include_additional_data_ = new_autosave_include_additional_data;
 	}
 }

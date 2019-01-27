@@ -68,7 +68,7 @@ namespace lml
 	public:
 		logger() noexcept = default;
 		logger(const logger&) = delete;
-		~logger() = default;
+		~logger();
 
 	public:
 		logger& operator=(const logger&) = delete;
@@ -79,7 +79,15 @@ namespace lml
 		void save(const std::basic_string<TCHAR>& path) const;
 		void save(const std::basic_string<TCHAR>& path, bool include_additional_data) const;
 
+	public:
+		std::basic_string<TCHAR> autosave() const;
+		void autosave(const std::basic_string<TCHAR>& new_autosave);
+		bool autosave_include_additional_data() const noexcept;
+		void autosave_include_additional_data(bool new_autosave_include_additional_data) noexcept;
+
 	private:
 		std::vector<log_ptr> logs_;
+		std::basic_string<TCHAR> autosave_;
+		bool autosave_include_additional_data_;
 	};
 }

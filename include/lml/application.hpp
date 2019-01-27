@@ -30,6 +30,7 @@ namespace lml
 
 		static inline HINSTANCE instance = nullptr;
 		static inline int show = 0;
+		static inline std::basic_string<TCHAR> path_appdata;
 
 		static inline logger logger;
 		static inline form_ptr main_form;

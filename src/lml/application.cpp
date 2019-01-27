@@ -2,17 +2,22 @@
 
 #include <lml/details/errorcode.hpp>
 
+#include <filesystem>
 #include <iomanip>
 #include <ios>
+#include <ShlObj.h>
+#include <Shlwapi.h>
 #include <sstream>
 
 namespace lml
 {
 	std::uint32_t application::initialize(HINSTANCE instance, int show) noexcept
 	{
+		// Initialize variables
 		application::instance = instance;
 		application::show = show;
 
+		// Initialize user interface
 		static WNDCLASS wndclass;
 		ZeroMemory(&wndclass, sizeof(wndclass));
 
@@ -37,6 +42,17 @@ namespace lml
 		{
 			return errorcode;
 		}
+
+		// Initialize directories
+		TCHAR appdata_buf[32767]{ 0, };
+		if (SHGetFolderPath(nullptr, CSIDL_APPDATA, nullptr, 0, appdata_buf) != S_OK) return LML_ERRORCODE_FAILED_TO_GET_APPDATA;
+		application::path_appdata = appdata_buf;
+		application::path_appdata += TEXT("\\Staticom\\LearnML");
+
+		if (!std::filesystem::exists(application::path_appdata) && !std::filesystem::create_directories(application::path_appdata)) return LML_ERRORCODE_FAILED_TO_CREATE_APPDATA;
+
+		// Initialize logger
+		application::logger.autosave(path_appdata + TEXT("\\latest_logs.lmll"));
 
 		return 0;
 	}
