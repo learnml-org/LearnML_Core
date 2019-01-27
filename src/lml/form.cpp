@@ -13,6 +13,22 @@ namespace lml
 	{
 		switch (message)
 		{
+		case WM_GETMINMAXINFO:
+		{
+			LPMINMAXINFO info = reinterpret_cast<LPMINMAXINFO>(lparam);
+			if (minimum_size != point{ 0, 0 })
+			{
+				info->ptMinTrackSize.x = static_cast<LONG>(minimum_size.x);
+				info->ptMinTrackSize.y = static_cast<LONG>(minimum_size.y);
+			}
+			if (maximum_size != point{ 0, 0 })
+			{
+				info->ptMaxTrackSize.x = static_cast<LONG>(maximum_size.x);
+				info->ptMaxTrackSize.y = static_cast<LONG>(maximum_size.y);
+			}
+			return 0;
+		}
+			
 		default:
 			return DefWindowProc(handle, message, wparam, lparam);
 		}

@@ -37,6 +37,7 @@ namespace lml
 		try
 		{
 			application::main_form = std::make_shared<lml::main_form>();
+			application::main_form->minimum_size = { 640, 480 };
 		}
 		catch (std::uint32_t errorcode)
 		{

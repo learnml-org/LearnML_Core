@@ -1,6 +1,7 @@
 #pragma once
 
 #include <lml/control.hpp>
+#include <lml/point.hpp>
 
 #include <memory>
 #include <Windows.h>
@@ -26,6 +27,10 @@ namespace lml
 
 	private:
 		HWND initialize_form_();
+
+	public:
+		point maximum_size;
+		point minimum_size;
 		
 	private:
 		static LRESULT CALLBACK wnd_proc_(HWND handle, UINT message, WPARAM wparam, LPARAM lparam);
