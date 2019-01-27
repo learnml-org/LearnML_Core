@@ -1,17 +1,19 @@
 #pragma once
 
+#include <lml/control.hpp>
+
 #include <memory>
 #include <Windows.h>
 
 namespace lml
 {
-	class form
+	class form : public control
 	{
 		friend class application;
 
 	public:
 		form(const form&) = delete;
-		virtual ~form();
+		virtual ~form() override = default;
 
 	protected:
 		form();
@@ -19,22 +21,12 @@ namespace lml
 	public:
 		form& operator=(const form&) = delete;
 
-	public:
-		void show();
-		void show(int show);
-
 	protected:
-		virtual LRESULT CALLBACK wnd_proc(UINT message, WPARAM wparam, LPARAM lparam);
+		virtual LRESULT CALLBACK wnd_proc(HWND handle, UINT message, WPARAM wparam, LPARAM lparam);
 
 	private:
-		void initialize_form_();
-
-	public:
-		HWND handle() noexcept;
-
-	private:
-		HWND handle_;
-
+		HWND initialize_form_();
+		
 	private:
 		static LRESULT CALLBACK wnd_proc_(HWND handle, UINT message, WPARAM wparam, LPARAM lparam);
 	};
@@ -52,6 +44,6 @@ namespace lml
 		main_form& operator=(const main_form&) = delete;
 
 	protected:
-		virtual LRESULT CALLBACK wnd_proc(UINT message, WPARAM wparam, LPARAM lparam) override;
+		virtual LRESULT CALLBACK wnd_proc(HWND handle, UINT message, WPARAM wparam, LPARAM lparam) override;
 	};
 }

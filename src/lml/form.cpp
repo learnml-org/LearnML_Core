@@ -5,48 +5,30 @@
 
 namespace lml
 {
-	form::~form()
-	{
-		DestroyWindow(handle_);
-		handle_ = nullptr;
-	}
-
 	form::form()
-	{
-		initialize_form_();
-	}
+		: control(initialize_form_())
+	{}
 	
-	void form::show()
-	{
-		show(SW_SHOW);
-	}
-	void form::show(int show)
-	{
-		ShowWindow(handle_, show);
-	}
-
-	LRESULT form::wnd_proc(UINT message, WPARAM wparam, LPARAM lparam)
+	LRESULT form::wnd_proc(HWND handle, UINT message, WPARAM wparam, LPARAM lparam)
 	{
 		switch (message)
 		{
 		default:
-			return DefWindowProc(handle_, message, wparam, lparam);
+			return DefWindowProc(handle, message, wparam, lparam);
 		}
 	}
 
-	void form::initialize_form_()
+	HWND form::initialize_form_()
 	{
-		if ((handle_ = CreateWindow(TEXT("form"), application::title, WS_OVERLAPPEDWINDOW,
+		HWND handle;
+		if ((handle = CreateWindow(TEXT("form"), application::title, WS_OVERLAPPEDWINDOW,
 			CW_USEDEFAULT, CW_USEDEFAULT, 980, 680,
 			nullptr, nullptr, application::instance, nullptr)) == nullptr) throw LML_ERRORCODE_FAILED_TO_CREATE_FORM;
 
 		SetLastError(0);
-		if (SetWindowLongPtr(handle_, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this)) == 0 && GetLastError() != 0) throw LML_ERRORCODE_FAILED_TO_CREATE_FORM;
-	}
+		if (SetWindowLongPtr(handle, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this)) == 0 && GetLastError() != 0) throw LML_ERRORCODE_FAILED_TO_CREATE_FORM;
 
-	HWND form::handle() noexcept
-	{
-		return handle_;
+		return handle;
 	}
 
 	LRESULT form::wnd_proc_(HWND handle, UINT message, WPARAM wparam, LPARAM lparam)
@@ -55,7 +37,7 @@ namespace lml
 		
 		if (address)
 		{
-			return address->wnd_proc(message, wparam, lparam);
+			return address->wnd_proc(handle, message, wparam, lparam);
 		}
 		else
 		{
@@ -66,7 +48,7 @@ namespace lml
 
 namespace lml
 {
-	LRESULT main_form::wnd_proc(UINT message, WPARAM wparam, LPARAM lparam)
+	LRESULT main_form::wnd_proc(HWND handle, UINT message, WPARAM wparam, LPARAM lparam)
 	{
 		switch (message)
 		{
@@ -75,7 +57,7 @@ namespace lml
 			return 0;
 
 		default:
-			return form::wnd_proc(message, wparam, lparam);
+			return form::wnd_proc(handle, message, wparam, lparam);
 		}
 	}
 }

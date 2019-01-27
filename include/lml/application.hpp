@@ -33,7 +33,7 @@ namespace lml
 		static inline std::basic_string<TCHAR> path_appdata;
 
 		static inline logger logger;
-		static inline form_ptr main_form;
+		static inline std::shared_ptr<main_form> main_form;
 
 	public:
 		static std::uint32_t initialize(HINSTANCE instance, int show) noexcept;
