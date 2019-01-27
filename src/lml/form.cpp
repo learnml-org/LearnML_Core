@@ -72,7 +72,7 @@ namespace lml
 		{
 		case WM_DESTROY:
 			PostQuitMessage(0);
-			break;
+			return 0;
 
 		default:
 			return form::wnd_proc(message, wparam, lparam);

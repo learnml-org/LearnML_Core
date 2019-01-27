@@ -1,6 +1,10 @@
 #pragma once
 
 #include <lml/form.hpp>
+#include <lml/log.hpp>
+#include <lml/logs/external_error.hpp>
+#include <lml/logs/internal_error.hpp>
+#include <lml/logs/message.hpp>
 
 #include <cstdint>
 #include <string>
@@ -27,6 +31,7 @@ namespace lml
 		static inline HINSTANCE instance = nullptr;
 		static inline int show = 0;
 
+		static inline logger logger;
 		static inline form_ptr main_form;
 
 	public:
