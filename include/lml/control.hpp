@@ -13,6 +13,7 @@ namespace lml
 		virtual ~control();
 
 	protected:
+		control();
 		control(HWND handle) noexcept;
 
 	public:
