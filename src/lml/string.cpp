@@ -1,6 +1,6 @@
 #include <lml/string.hpp>
 
-#include <lml/details/errorcode.hpp>
+#include <lml/errorcode.hpp>
 
 #include <Windows.h>
 

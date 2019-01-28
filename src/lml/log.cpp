@@ -1,8 +1,8 @@
 #include <lml/log.hpp>
 
 #include <lml/application.hpp>
+#include <lml/errorcode.hpp>
 #include <lml/platform.hpp>
-#include <lml/details/errorcode.hpp>
 
 #include <lml/string.hpp>
 

@@ -1,10 +1,10 @@
 #pragma once
 
-#include <lml/form.hpp>
 #include <lml/log.hpp>
 #include <lml/logs/external_error.hpp>
 #include <lml/logs/internal_error.hpp>
 #include <lml/logs/message.hpp>
+#include <lml_ue/form.hpp>
 
 #include <cstdint>
 #include <string>
@@ -33,7 +33,7 @@ namespace lml
 		static inline std::basic_string<TCHAR> path_appdata;
 
 		static inline logger logger;
-		static inline std::shared_ptr<main_form> main_form;
+		static inline std::shared_ptr<lml_ue::main_form> main_form;
 
 	public:
 		static std::uint32_t initialize(HINSTANCE instance, int show) noexcept;

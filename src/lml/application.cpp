@@ -1,6 +1,7 @@
 #include <lml/application.hpp>
 
-#include <lml/details/errorcode.hpp>
+#include <lml/errorcode.hpp>
+#include <lml_ue/engine.hpp>
 
 #include <filesystem>
 #include <iomanip>
@@ -18,25 +19,11 @@ namespace lml
 		application::show = show;
 
 		// Initialize user interface
-		static WNDCLASS wndclass;
-		ZeroMemory(&wndclass, sizeof(wndclass));
-
-		wndclass.cbClsExtra = 0;
-		wndclass.cbWndExtra = 0;
-		wndclass.hbrBackground = reinterpret_cast<HBRUSH>(GetStockObject(WHITE_BRUSH));
-		wndclass.hCursor = LoadCursor(nullptr, IDC_ARROW);
-		wndclass.hIcon = LoadIcon(nullptr, IDI_APPLICATION);
-		wndclass.hInstance = instance;
-		wndclass.lpfnWndProc = form::wnd_proc_;
-		wndclass.lpszClassName = TEXT("form");
-		wndclass.lpszMenuName = nullptr;
-		wndclass.style = CS_HREDRAW | CS_VREDRAW;
-		
-		if (RegisterClass(&wndclass) == 0) return LML_ERRORCODE_FAILED_TO_REGISTER_FORM;
+		if (std::uint32_t errorcode = lml_ue::initialize(instance); errorcode) return errorcode;
 
 		try
 		{
-			application::main_form = std::make_shared<lml::main_form>();
+			application::main_form = std::make_shared<lml_ue::main_form>();
 			application::main_form->minimum_size = { 640, 480 };
 		}
 		catch (std::uint32_t errorcode)
