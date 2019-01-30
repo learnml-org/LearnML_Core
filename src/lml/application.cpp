@@ -24,7 +24,11 @@ namespace lml
 		try
 		{
 			application::main_form = std::make_shared<lml_ue::main_form>();
-			application::main_form->minimum_size = { 640, 480 };
+			application::main_form->minimum_size(640, 480);
+			application::main_form->clicked += []()
+			{
+				MessageBox(nullptr, L"Hello, world!", L"", 0);
+			};
 		}
 		catch (std::uint32_t errorcode)
 		{
