@@ -1,9 +1,9 @@
 #pragma once
 
-#include <lml/log.hpp>
-#include <lml/logs/external_error.hpp>
-#include <lml/logs/internal_error.hpp>
-#include <lml/logs/message.hpp>
+#include <lml_le/log.hpp>
+#include <lml_le/external_error.hpp>
+#include <lml_le/internal_error.hpp>
+#include <lml_le/message.hpp>
 #include <lml_ue/form.hpp>
 
 #include <cstdint>
@@ -32,7 +32,7 @@ namespace lml
 		static inline int show = 0;
 		static inline std::basic_string<TCHAR> path_appdata;
 
-		static inline logger logger;
+		static inline lml_le::logger logger;
 		static inline std::shared_ptr<lml_ue::main_form> main_form;
 
 	public:

@@ -1,6 +1,7 @@
 #include <lml/application.hpp>
 
 #include <lml/errorcode.hpp>
+#include <lml_le/engine.hpp>
 #include <lml_ue/engine.hpp>
 
 #include <filesystem>
@@ -40,8 +41,9 @@ namespace lml
 		if (!std::filesystem::exists(application::path_appdata) && !std::filesystem::create_directories(application::path_appdata)) return LML_ERRORCODE_FAILED_TO_CREATE_APPDATA;
 
 		// Initialize logger
+		lml_le::initialize(application::version_int);
 		application::logger.autosave(path_appdata + TEXT("\\latest_logs.lmll"));
-		application::logger.add_log(logs::make_message(TEXT("Initialization succeeded."), log_type::info));
+		application::logger.add_log(lml_le::make_message(TEXT("Initialization succeeded."), lml_le::log_type::info));
 
 		return 0;
 	}

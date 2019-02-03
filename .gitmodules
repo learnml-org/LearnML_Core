@@ -4,3 +4,6 @@
 [submodule "src/lml_ue"]
 	path = src/lml_ue
 	url = https://github.com/kmc7468/LearnML_UE.git
+[submodule "src/lml_le"]
+	path = src/lml_le
+	url = https://github.com/kmc7468/LearnML_LE.git

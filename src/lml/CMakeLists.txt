@@ -15,6 +15,6 @@ include_directories(${INCLUDE_DIR})
 file(GLOB_RECURSE SOURCE_LIST ${SOURCE_DIR}/*.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCE_LIST})
-target_link_libraries(${PROJECT_NAME} LearnML_EDK LearnML_UE)
+target_link_libraries(${PROJECT_NAME} LearnML_LE LearnML_EDK LearnML_UE)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
