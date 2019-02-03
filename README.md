@@ -6,6 +6,7 @@ LearnML은 머신러닝 학습자를 위해 개발된 시각화 프로그램으�
 
 ## 외부 모듈
 - [LearnML EDK](https://github.com/kmc7468/LearnML_EDK): LearnML Extension Development Kit (MIT 라이선스)
+- [LearnML LE](https://github.com/kmc7468/LearnML_LE): LearnML Logging Engine (MIT 라이선스)
 - [LearnML UE](https://github.com/kmc7468/LearnML_UE): LearnML User Interface Engine (GPLv2 라이선스)
 
 ## 라이선스
