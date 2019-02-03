@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(INCLUDE_DIR "../../include" "../lml_edk/include" "../lml_ue/include")
+set(INCLUDE_DIR "../../include" "../../extlib/include" "../lml_le/include" "../lml_edk/include" "../lml_ue/include")
 set(SOURCE_DIR "./")
 set(OUTPUT_DIR "../../bin")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR})
