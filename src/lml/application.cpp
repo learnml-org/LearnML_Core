@@ -25,10 +25,6 @@ namespace lml
 		{
 			application::main_form = std::make_shared<lml_ue::main_form>();
 			application::main_form->minimum_size(640, 480);
-			application::main_form->clicked += []()
-			{
-				MessageBox(nullptr, L"Hello, world!", L"", 0);
-			};
 		}
 		catch (std::uint32_t errorcode)
 		{
@@ -45,6 +41,7 @@ namespace lml
 
 		// Initialize logger
 		application::logger.autosave(path_appdata + TEXT("\\latest_logs.lmll"));
+		application::logger.add_log(logs::make_message(TEXT("Initialization succeeded."), log_type::info));
 
 		return 0;
 	}
