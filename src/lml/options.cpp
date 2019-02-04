@@ -11,6 +11,13 @@ namespace lml
 	{
 		load(option_path);
 	}
+	options::~options()
+	{
+		if (!autosave_.empty())
+		{
+			save(autosave_);
+		}
+	}
 
 	void options::load(const std::basic_string<TCHAR>& option_path)
 	{
@@ -42,6 +49,15 @@ namespace lml
 		};
 		stream << option;
 		stream.close();
+	}
+
+	std::basic_string<TCHAR> options::autosave() const
+	{
+		return autosave_;
+	}
+	void options::autosave(const std::basic_string<TCHAR>& new_autosave)
+	{
+		autosave_ = new_autosave;
 	}
 
 	lml_edk::language options::language() const noexcept

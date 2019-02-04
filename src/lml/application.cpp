@@ -47,10 +47,13 @@ namespace lml
 		}
 		catch (std::uint32_t)
 		{}
+		application::options.autosave(path_appdata + TEXT("\\options.lmlo"));
 
 		// Initialize logger
-		lml_le::initialize(application::version_int);
+		lml_le::initialize(application::version_int, &application::get_temp_file);
 		application::logger.autosave(path_appdata + TEXT("\\latest_logs.lmll"));
+		application::logger.autosave_include_additional_data(application::options.include_additional_data());
+
 		application::logger.add_log(lml_le::make_message(TEXT("Initialization succeeded."), lml_le::log_type::info));
 
 		return 0;
@@ -77,6 +80,23 @@ namespace lml
 		{
 			application::messagebox(nullptr, lml::make_error_message(errorcode), MB_OK | MB_ICONERROR);
 		}
+	}
+
+	std::basic_string<TCHAR> application::get_temp_file()
+	{
+		static std::basic_string<TCHAR> temp_path;
+
+		if (temp_path.empty())
+		{
+			TCHAR temp_path_buf[32767]{ 0, };
+			if (GetTempPath(sizeof(temp_path_buf) / sizeof(TCHAR), temp_path_buf) == 0) throw LML_ERRORCODE_FAILED_TO_GET_TEMP_DIRECTORY;
+			temp_path = temp_path_buf;
+		}
+
+		TCHAR temp_file_buf[32767]{ 0, };
+		if (GetTempFileName(temp_path.c_str(), TEXT("lml"), 0, temp_file_buf) == 0) throw LML_ERRORCODE_FAILED_TO_GET_TEMP_FILE;
+		
+		return temp_file_buf;
 	}
 }
 

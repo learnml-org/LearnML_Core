@@ -13,7 +13,7 @@ namespace lml
 		options() noexcept = default;
 		explicit options(const std::basic_string<TCHAR>& option_path);
 		options(const options&) = delete;
-		~options() = default;
+		~options();
 
 	public:
 		options& operator=(const options&) = delete;
@@ -23,6 +23,9 @@ namespace lml
 		void save(const std::basic_string<TCHAR>& option_path) const;
 
 	public:
+		std::basic_string<TCHAR> autosave() const;
+		void autosave(const std::basic_string<TCHAR>& new_autosave);
+
 		lml_edk::language language() const noexcept;
 		void language(lml_edk::language new_language) noexcept;
 
@@ -30,6 +33,8 @@ namespace lml
 		void include_additional_data(bool new_include_additional_data) noexcept;
 
 	private:
+		std::basic_string<TCHAR> autosave_;
+
 		lml_edk::language language_ = lml_edk::language::ko;
 
 		bool include_additional_data_ = false;

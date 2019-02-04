@@ -41,6 +41,8 @@ namespace lml
 		static std::uint32_t initialize(HINSTANCE instance, int show) noexcept;
 		static int messagebox(HWND owner, const std::basic_string<TCHAR>& message, UINT option) noexcept;
 		static void run() noexcept;
+
+		static std::basic_string<TCHAR> get_temp_file();
 	};
 
 	std::basic_string<TCHAR> make_error_message(std::uint32_t errorcode);
