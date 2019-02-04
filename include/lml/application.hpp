@@ -1,5 +1,6 @@
 #pragma once
 
+#include <lml/options.hpp>
 #include <lml_le/log.hpp>
 #include <lml_le/external_error.hpp>
 #include <lml_le/internal_error.hpp>
@@ -33,6 +34,7 @@ namespace lml
 		static inline std::basic_string<TCHAR> path_appdata;
 
 		static inline lml_le::logger logger;
+		static inline lml::options options;
 		static inline std::shared_ptr<lml_ue::main_form> main_form;
 
 	public:

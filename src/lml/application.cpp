@@ -40,6 +40,14 @@ namespace lml
 
 		if (!std::filesystem::exists(application::path_appdata) && !std::filesystem::create_directories(application::path_appdata)) return LML_ERRORCODE_FAILED_TO_CREATE_APPDATA;
 
+		// Load options
+		try
+		{
+			application::options.load(path_appdata + TEXT("\\options.lmlo"));
+		}
+		catch (std::uint32_t)
+		{}
+
 		// Initialize logger
 		lml_le::initialize(application::version_int);
 		application::logger.autosave(path_appdata + TEXT("\\latest_logs.lmll"));
