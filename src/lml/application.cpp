@@ -50,7 +50,7 @@ namespace lml
 		application::options.autosave(path_appdata + TEXT("\\options.lmlo"));
 
 		// Initialize logger
-		lml_le::initialize(application::version_int, &application::get_temp_file);
+		if (std::uint32_t errorcode = lml_le::initialize(application::version_int, &application::get_temp_file); errorcode) return errorcode;
 		application::logger.autosave(path_appdata + TEXT("\\latest_logs.lmll"));
 		application::logger.autosave_include_additional_data(application::options.include_additional_data());
 
