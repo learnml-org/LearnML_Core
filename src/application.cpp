@@ -5,10 +5,21 @@
 #include <lml_pae/engine.hpp>
 #include <lml_pae/filesystem.hpp>
 
-#include <filesystem>
 #include <iomanip>
 #include <ios>
 #include <sstream>
+
+#if __has_include(<filesystem>)
+#	include <filesystem>
+
+namespace fs = std::filesystem;
+#elif __has_include(<filesystem>)
+#	include <experimental/filesystem>
+
+namespace fs = std::experimental::filesystem;
+#else
+#	error Not supported
+#endif
 
 namespace lml
 {
@@ -21,7 +32,7 @@ namespace lml
 		const lml_pae::string options_path = lml_pae::get_data_file(STR("options.lmlo"));
 		const lml_pae::string logs_path = lml_pae::get_data_file(STR("logs.lmll"));
 
-		if (!std::filesystem::exists(data_directory) && !std::filesystem::create_directories(data_directory))
+		if (!fs::exists(data_directory) && !fs::create_directories(data_directory))
 			return LML_ERRORCODE_FAILED_TO_CREATE_APPDATA;
 		
 		try
