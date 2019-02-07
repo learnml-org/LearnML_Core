@@ -1,6 +1,7 @@
 #include <lml/extension_engine.hpp>
 
 #include <lml/application.hpp>
+#include <lml/errorcode.hpp>
 
 #include <algorithm>
 #include <memory>
@@ -8,28 +9,29 @@
 
 namespace lml
 {
-	std::uint64_t extension_engine::add_extension(const std::basic_string<TCHAR>& path)
+	std::uint64_t extension_engine::add_extension(const lml_pae::string& path)
 	{
-		HMODULE library = LoadLibrary(path.c_str());
+		lml_pae::dll_handle library = lml_pae::open_dll(path);
+		if (!library) throw LML_ERRORCODE_FAILED_TO_OPEN_EXTENSION;
+
 		lml_edk::extension_base_ptr extension;
-		if (!library) throw std::runtime_error("Failed to load extension.");
 		std::shared_ptr<void> library_raii(library, [&extension](void* module)
 		{
 			if (!extension)
 			{
-				FreeLibrary(reinterpret_cast<HMODULE>(module));
+				lml_pae::close_dll(module);
 			}
 		});
-		if (std::find_if(extensions_.begin(), extensions_.end(), [library](const std::pair<std::uint64_t, std::pair<lml_edk::extension_base_ptr, HMODULE>>& pair)
+		if (std::find_if(extensions_.begin(), extensions_.end(), [library](const std::pair<std::uint64_t, std::pair<lml_edk::extension_base_ptr, lml_pae::dll_handle>>& pair)
 			{
 				return library == pair.second.second;
-			}) != extensions_.end()) throw std::runtime_error("This extension has already added.");
+			}) != extensions_.end()) throw LML_ERRORCODE_ALREADY_LOADED_EXTENSION;
 
-		void*(*allocate_extension)() = reinterpret_cast<void*(*)()>(GetProcAddress(library, "allocate_extension"));
-		if (!allocate_extension) throw std::runtime_error("This extension has no entrypoint.");
+		void*(*allocate_function)() = lml_pae::get_function_from_dll<void*(*)()>(library, "allocate_function");
+		if (!allocate_function) throw LML_ERRORCODE_FAILED_TO_LOAD_EXTENSION_ENTRYPOINT;
 
-		extension = lml_edk::extension_base_ptr(reinterpret_cast<lml_edk::extension_base*>(allocate_extension()));
-		if (!extension) throw std::runtime_error("Failed to create instance.");
+		extension = lml_edk::extension_base_ptr(reinterpret_cast<lml_edk::extension_base*>(allocate_function()));
+		if (!extension) throw LML_ERRORCODE_FAILED_TO_CREATE_EXTENSION_INSTANCE;
 
 		static std::uint64_t last_id = 0;
 		extensions_.insert(std::make_pair(last_id++, std::make_pair(extension, library)));
