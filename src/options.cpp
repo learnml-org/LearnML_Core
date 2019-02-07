@@ -7,7 +7,7 @@
 
 namespace lml
 {
-	options::options(const std::basic_string<TCHAR>& option_path)
+	options::options(const lml_pae::string& option_path)
 	{
 		load(option_path);
 	}
@@ -19,7 +19,7 @@ namespace lml
 		}
 	}
 
-	void options::load(const std::basic_string<TCHAR>& option_path)
+	void options::load(const lml_pae::string& option_path)
 	{
 		std::ifstream stream(option_path);
 		if (!stream) throw LML_ERRORCODE_FAILED_TO_OPEN_OPTION_FILE;
@@ -33,7 +33,7 @@ namespace lml
 		const nlohmann::json& privacy = root["privacy"];
 		include_additional_data_ = privacy["include_additional_data"].get<bool>();
 	}
-	void options::save(const std::basic_string<TCHAR>& option_path) const
+	void options::save(const lml_pae::string& option_path) const
 	{
 		std::ofstream stream(option_path);
 		if (!stream) throw LML_ERRORCODE_FAILED_TO_CREATE_OPTION_FILE;
@@ -51,11 +51,11 @@ namespace lml
 		stream.close();
 	}
 
-	std::basic_string<TCHAR> options::autosave() const
+	lml_pae::string options::autosave() const
 	{
 		return autosave_;
 	}
-	void options::autosave(const std::basic_string<TCHAR>& new_autosave)
+	void options::autosave(const lml_pae::string& new_autosave)
 	{
 		autosave_ = new_autosave;
 	}

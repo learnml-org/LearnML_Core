@@ -1,6 +1,7 @@
 #include <lml/layers/fully_connected_layer.hpp>
 
 #include <lml/details/string.hpp>
+#include <lml_pae/string.hpp>
 
 #include <algorithm>
 #include <random>
@@ -43,10 +44,10 @@ namespace lml::layers
 	{
 		return {
 			{ lml_edk::language::ko, {
-				{ TEXT(""), LML_STRING_LAYERS_FULLY_CONNECTED_LAYER_METHOD_DESCRIPTION_KOR }
+				{ STR(""), LML_STRING_LAYERS_FULLY_CONNECTED_LAYER_METHOD_DESCRIPTION_KOR }
 			} },
 			{ lml_edk::language::en, {
-				{ TEXT(""), LML_STRING_LAYERS_FULLY_CONNECTED_LAYER_METHOD_DESCRIPTION_ENG }
+				{ STR(""), LML_STRING_LAYERS_FULLY_CONNECTED_LAYER_METHOD_DESCRIPTION_ENG }
 			} }
 		};
 	}

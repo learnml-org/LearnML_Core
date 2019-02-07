@@ -1,5 +1,8 @@
 #include <lml/layers/sigmoid_layer.hpp>
 
+#include <lml/details/string.hpp>
+#include <lml_pae/string.hpp>
+
 #include <algorithm>
 #include <cmath>
 
@@ -12,18 +15,18 @@ namespace lml::layers
 	lml_edk::global_string sigmoid_layer::name() const
 	{
 		return {
-			{ lml_edk::language::ko, TEXT("Sigmoid층") },
-			{ lml_edk::language::en, TEXT("Sigmoid layer") }
+			{ lml_edk::language::ko, LML_STRING_LAYERS_SIGMOID_LAYER_METHOD_NAME_KOR },
+			{ lml_edk::language::en, LML_STRING_LAYERS_SIGMOID_LAYER_METHOD_NAME_ENG }
 		};
 	}
 	lml_edk::global_description sigmoid_layer::description() const
 	{
 		return {
 			{ lml_edk::language::ko, {
-				{ TEXT(""), TEXT("Sigmoid의 활성값을 계산합니다.") }
+				{ STR(""), LML_STRING_LAYERS_SIGMOID_LAYER_METHOD_DESCRIPTION_KOR }
 			} },
 			{ lml_edk::language::en, {
-				{ TEXT(""), TEXT("Calculate the value of Sigmoid function.") }
+				{ STR(""), LML_STRING_LAYERS_SIGMOID_LAYER_METHOD_DESCRIPTION_ENG }
 			} }
 		};
 	}

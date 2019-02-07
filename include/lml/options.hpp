@@ -1,9 +1,7 @@
 #pragma once
 
 #include <lml_edk/language.hpp>
-
-#include <string>
-#include <Windows.h>
+#include <lml_pae/string.hpp>
 
 namespace lml
 {
@@ -11,7 +9,7 @@ namespace lml
 	{
 	public:
 		options() noexcept = default;
-		explicit options(const std::basic_string<TCHAR>& option_path);
+		explicit options(const lml_pae::string& option_path);
 		options(const options&) = delete;
 		~options();
 
@@ -19,12 +17,12 @@ namespace lml
 		options& operator=(const options&) = delete;
 
 	public:
-		void load(const std::basic_string<TCHAR>& option_path);
-		void save(const std::basic_string<TCHAR>& option_path) const;
+		void load(const lml_pae::string& option_path);
+		void save(const lml_pae::string& option_path) const;
 
 	public:
-		std::basic_string<TCHAR> autosave() const;
-		void autosave(const std::basic_string<TCHAR>& new_autosave);
+		lml_pae::string autosave() const;
+		void autosave(const lml_pae::string& new_autosave);
 
 		lml_edk::language language() const noexcept;
 		void language(lml_edk::language new_language) noexcept;
@@ -33,7 +31,7 @@ namespace lml
 		void include_additional_data(bool new_include_additional_data) noexcept;
 
 	private:
-		std::basic_string<TCHAR> autosave_;
+		lml_pae::string autosave_;
 
 		lml_edk::language language_ = lml_edk::language::ko;
 

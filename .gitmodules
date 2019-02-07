@@ -1,9 +1,3 @@
-[submodule "src/lml_edk"]
-	path = src/lml_edk
-	url = https://github.com/kmc7468/LearnML_EDK.git
-[submodule "src/lml_ue"]
-	path = src/lml_ue
-	url = https://github.com/kmc7468/LearnML_UE.git
-[submodule "src/lml_le"]
-	path = src/lml_le
-	url = https://github.com/kmc7468/LearnML_LE.git
+[submodule "mod/lml_edk"]
+	path = mod/lml_edk
+	url = https://github.com/learnml-org/LearnML_EDK.git
