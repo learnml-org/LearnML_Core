@@ -5,10 +5,6 @@
 #include <lml_pae/engine.hpp>
 #include <lml_pae/filesystem.hpp>
 
-#include <iomanip>
-#include <ios>
-#include <sstream>
-
 #if __has_include(<filesystem>)
 #	include <filesystem>
 
@@ -48,15 +44,5 @@ namespace lml
 
 		application::logger.add_log(lml_le::make_message(STR("Initialization succeeded."), lml_le::log_type::info));
 		return 0;
-	}
-}
-
-namespace lml
-{
-	lml_pae::string make_error_message(std::uint32_t errorcode)
-	{
-		std::basic_ostringstream<lml_pae::character> oss;
-		oss << STR("Error! Please report to the developers.\nErrorcode: 0x") << std::hex << std::setw(8) << std::setfill(STR('0')) << errorcode << ')';
-		return oss.str();
 	}
 }

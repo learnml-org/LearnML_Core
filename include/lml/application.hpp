@@ -33,6 +33,4 @@ namespace lml
 	public:
 		static std::uint32_t initialize() noexcept;
 	};
-
-	lml_pae::string make_error_message(std::uint32_t errorcode);
 }
