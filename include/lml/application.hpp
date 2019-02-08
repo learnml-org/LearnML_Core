@@ -1,5 +1,6 @@
 #pragma once
 
+#include <lml/languages.hpp>
 #include <lml/options.hpp>
 #include <lml_le/external_error.hpp>
 #include <lml_le/internal_error.hpp>
@@ -29,6 +30,7 @@ namespace lml
 
 		static inline lml_le::logger logger;
 		static inline lml::options options;
+		static inline lml::languages languages;
 
 	public:
 		static std::uint32_t initialize() noexcept;

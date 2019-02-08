@@ -6,6 +6,8 @@
 
 #define LML_ERRORCODE_FAILED_TO_OPEN_OPTION_FILE				static_cast<std::uint32_t>(0x00000010)
 #define LML_ERRORCODE_FAILED_TO_CREATE_OPTION_FILE				static_cast<std::uint32_t>(0x00000011)
+#define LML_ERRORCODE_FAILED_TO_OPEN_LANGUAGE_FILE				static_cast<std::uint32_t>(0x00000012)
+#define LML_ERRORCODE_FAILED_TO_CREATE_LANGUAGE_FILE			static_cast<std::uint32_t>(0x00000013)
 
 #define LML_ERRORCODE_FAILED_TO_OPEN_EXTENSION					static_cast<std::uint32_t>(0x00000020)
 #define LML_ERRORCODE_ALREADY_LOADED_EXTENSION					static_cast<std::uint32_t>(0x00000021)
