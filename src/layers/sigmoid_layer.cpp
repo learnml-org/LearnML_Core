@@ -1,5 +1,6 @@
 #include <lml/layers/sigmoid_layer.hpp>
 
+#include <lml/application.hpp>
 #include <lml/details/string.hpp>
 #include <lml_pae/string.hpp>
 
@@ -12,23 +13,13 @@ namespace lml::layers
 	{
 		return 1;
 	}
-	lml_edk::global_string sigmoid_layer::name() const
+	lml_pae::string sigmoid_layer::name() const
 	{
-		return {
-			{ lml_edk::language::ko, LML_STRING_LAYERS_SIGMOID_LAYER_METHOD_NAME_KOR },
-			{ lml_edk::language::en, LML_STRING_LAYERS_SIGMOID_LAYER_METHOD_NAME_ENG }
-		};
+		return application::languages["lml.layers.sigmoid_layer.name"];
 	}
-	lml_edk::global_description sigmoid_layer::description() const
+	lml_edk::description sigmoid_layer::description() const
 	{
-		return {
-			{ lml_edk::language::ko, {
-				{ STR(""), LML_STRING_LAYERS_SIGMOID_LAYER_METHOD_DESCRIPTION_KOR }
-			} },
-			{ lml_edk::language::en, {
-				{ STR(""), LML_STRING_LAYERS_SIGMOID_LAYER_METHOD_DESCRIPTION_ENG }
-			} }
-		};
+		return { { STR(""), application::languages["lml.layers.sigmoid_layer.description"] } };
 	}
 	lml_edk::matrix sigmoid_layer::forward(const lml_edk::matrix& x)
 	{

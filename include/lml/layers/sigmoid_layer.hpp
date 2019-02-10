@@ -20,8 +20,8 @@ namespace lml::layers
 
 	public:
 		virtual std::uint32_t id() const noexcept override;
-		virtual lml_edk::global_string name() const override;
-		virtual lml_edk::global_description description() const override;
+		virtual lml_pae::string name() const override;
+		virtual lml_edk::description description() const override;
 		virtual lml_edk::matrix forward(const lml_edk::matrix& x) override;
 		virtual lml_edk::matrix backward(const lml_edk::matrix& g) override;
 		virtual void update(double lr) override;

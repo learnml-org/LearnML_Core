@@ -1,5 +1,6 @@
 #include <lml/layers/fully_connected_layer.hpp>
 
+#include <lml/application.hpp>
 #include <lml/details/string.hpp>
 #include <lml_pae/string.hpp>
 
@@ -33,23 +34,13 @@ namespace lml::layers
 	{
 		return 0;
 	}
-	lml_edk::global_string fully_connected_layer::name() const
+	lml_pae::string fully_connected_layer::name() const
 	{
-		return {
-			{ lml_edk::language::ko, LML_STRING_LAYERS_FULLY_CONNECTED_LAYER_METHOD_NAME_KOR },
-			{ lml_edk::language::en, LML_STRING_LAYERS_FULLY_CONNECTED_LAYER_METHOD_NAME_ENG }
-		};
+		return application::languages["lml.layers.fully_connected_layer.name"];
 	}
-	lml_edk::global_description fully_connected_layer::description() const
+	lml_edk::description fully_connected_layer::description() const
 	{
-		return {
-			{ lml_edk::language::ko, {
-				{ STR(""), LML_STRING_LAYERS_FULLY_CONNECTED_LAYER_METHOD_DESCRIPTION_KOR }
-			} },
-			{ lml_edk::language::en, {
-				{ STR(""), LML_STRING_LAYERS_FULLY_CONNECTED_LAYER_METHOD_DESCRIPTION_ENG }
-			} }
-		};
+		return { { STR(""), application::languages["lml.layers.fully_connected_layer.description"] } };
 	}
 	lml_edk::matrix fully_connected_layer::forward(const lml_edk::matrix& x)
 	{

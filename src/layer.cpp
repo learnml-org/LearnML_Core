@@ -10,11 +10,11 @@ namespace lml
 	{
 		return layer_->id();
 	}
-	lml_edk::global_string wrap_layer::name() const
+	lml_pae::string wrap_layer::name() const
 	{
 		return layer_->name();
 	}
-	lml_edk::global_description wrap_layer::description() const
+	lml_edk::description wrap_layer::description() const
 	{
 		return layer_->description();
 	}
@@ -43,11 +43,11 @@ namespace lml
 	{
 		return extension_.id();
 	}
-	lml_edk::global_string layer_extension::name() const
+	lml_pae::string layer_extension::name() const
 	{
 		return extension_.name();
 	}
-	lml_edk::global_description layer_extension::description() const
+	lml_edk::description layer_extension::description() const
 	{
 		return extension_.description();
 	}
