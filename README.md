@@ -7,6 +7,8 @@ LearnML Core는 LearnML 핵심 API들을 제공하는 [LearnML](https://github.c
 - [LearnML PAE](https://github.com/learnml-org/LearnML_PAE) (MIT 라이선스)
 
 ## 외부 라이브러리
+- [boost](https://www.boost.org) (Boost Software 라이선스)
+    - 별도 설치가 필요합니다.
 - [JSON for Modern C++ version 3.5.0](https://github.com/nlohmann/json) (MIT 라이선스)
 
 ## 라이선스
