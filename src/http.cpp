@@ -49,7 +49,7 @@ namespace lml::http
 		const std::pair<std::string, std::string> host_and_path = get_host_and_path(url);
 		const auto& [host, path] = host_and_path;
 
-		asio::io_service io;
+		static asio::io_service io;
 
 		tcp::resolver resolver(io);
 		tcp::resolver::query query(host, "http");
